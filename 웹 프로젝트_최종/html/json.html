@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="author" content="김영진,이소연">
+    <meta name="description" content="코로나19 관련 정보">
+    <meta name="keywords" content="코로나,코로나19,covid-19,감염병,진료소,선별진료소,임시선별진료소,검사,바이러스,확진자,백신,백신접종,백신접종소,아스트라제네카,화이자">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">        <!--title icon-->
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"> <!--fontawesome icon-->
+    <link type="text/css" rel="stylesheet" href="../style.css">
+    <!--<link rel="stylesheet" href="./debug.css">--> <!--debuger-->
+    <style>
+      #EX{
+
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 400px;
+        z-index: 10;
+      
+      }
+    </style>
+</head>
+
+<body>
+      <!--NAVBAR --> 
+      <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation"> <!--is-white has-shadow is-transparent-->
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <img src="../images/logo 64px.png" alt="logo" class="px-4">
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-start" id="golf">
+            <a href="infection.html" target="_blank" class="navbar-item" id="hotel">
+              <span style="color: #ff506e;">
+                <i class="fas fa-procedures fa-pull-left"></i>
+              </span>    
+                확진자현황
+            </a>
+            <a href="./exam.html" target="_blank" class="navbar-item" id="india">
+              <span style="color: #228b22;">
+                <i class="fas fa-hospital fa-pull-left"></i>
+              </span>
+              선별진료소
+            </a>
+            <a href="./vaccine.html" target="_blank" class="navbar-item" id="juliet">
+            <span style="color: #00cccc;">
+              <i class="fas fa-syringe fa-pull-left"></i>
+            </span>  
+              백신접종소
+            </a>
+            <a href="www.naver.com" target="_blank" class="navbar-item" id="kilo">
+              <span style="color: #ffa940;">
+                <i class="fas fa-first-aid fa-pull-left"></i>
+              </span>
+              이상반응 신고
+            </a>
+            <a href="www.daum.net" target="_blank" class="navbar-item" id="lima">
+              <span style="color: #0073ff;">
+                <i class="fas fa-sad-tear fa-pull-left"></i>
+              </span>
+              코로나 블루
+            </a>
+          </div>
+          <div class="navbar-end pr-2">                              
+            <div class="buttons">
+              <button onclick="donation_show();" class="button is-warning is-light">
+                <i class="fas fa-hand-holding-usd">&nbsp;</i>
+                <strong>후원</strong>
+              </button>           
+            </div>
+        </div>
+        <div class="navbar-end pr-2">                              
+          <div class="buttons">
+            <button onclick="notic_open();" class="button is-link is-light">
+              <i class="fas fa-wrench">&nbsp;</i>
+              <strong>관리자</strong>
+            </button>
+          </div>
+        </div>  
+      </nav>
+      <!--NAVBAR End-->
+      
+      <div class="notification is-warning" id="donation">
+        <button type="button" class="delete" onclick="donation_hide();"></button>
+          <div class="card-content">
+          <img src="../images/qr.jpg" width="200px" height="200px">
+        </div>
+      </div>
+        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+    <script>
+
+    function excelExport(event){
+        excelExportCommon(event, handleExcelDataAll);
+    }
+    function excelExportCommon(event, callback){
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function(){
+            var fileData = reader.result;
+            var wb = XLSX.read(fileData, {type : 'binary'});
+            var sheetNameList = wb.SheetNames; // 시트 이름 목록 가져오기 
+            var firstSheetName = sheetNameList[0]; // 첫번째 시트명
+            var firstSheet = wb.Sheets[firstSheetName]; // 첫번째 시트 
+            callback(firstSheet);      
+        };
+        reader.readAsBinaryString(input.files[0]);
+    }
+    function handleExcelDataAll(sheet){
+        handleExcelDataJson(sheet); // json 형태
+    }
+    function handleExcelDataJson(sheet){
+        $("#displayExcelJson").html(JSON.stringify(XLSX.utils.sheet_to_json (sheet)));
+
+    }
+
+
+    // 출처 : https://github.com/SheetJS/js-xlsx/issues/214
+    function get_header_row(sheet) {
+        var headers = [];
+        var range = XLSX.utils.decode_range(sheet['!ref']);
+        var C, R = range.s.r; /* start in the first row */
+        /* walk every column in the range */
+        for(C = range.s.c; C <= range.e.c; ++C) {
+            var cell = sheet[XLSX.utils.encode_cell({c:C, r:R})] /* find the cell in the first row */
+
+            var hdr = "UNKNOWN " + C; // <-- replace with your desired default 
+            if(cell && cell.t) hdr = XLSX.utils.format_cell(cell);
+
+            headers.push(hdr);
+        }
+        return headers;
+    }
+
+
+    function why(){
+
+        var strdata = document.getElementById("displayExcelJson").innerText;
+
+        saveAsFile(strdata, "jsonall.json");
+
+        function saveAsFile(str, filename) {
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:attachment/text,' + encodeURI(str);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = filename;
+            hiddenElement.click();
+        }
+    
+
+    }
+
+
+
+    function notic_close() {
+      document.getElementById("EX").style.display = "none";
+    }
+
+    function notic_open() {
+      document.getElementById("EX").style.display = "block";
+      document.getElementById("donation").style.display = "none";
+    }
+
+
+
+  </script>
+
+    <form class="box">
+      <div class="field">
+          파일 선택 : <input type="file" id="excelFile" onchange="excelExport(event)"/>
+      </div>
+
+      <div class="field">
+        <button class="button is-primary" type="button" onclick="why();" >다운로드</button>
+      </div>
+
+    </form>
+      
+    <h1>JSON 형태로 보기</h1>
+    <div id="displayExcelJson"></div>
+
+    <div class="notification is-warning" id="EX">
+      <button type="button" class="delete" onclick="notic_close();"></button>
+        <div class="card-content">
+          <p>의료기관명-->이름</p><br>
+          <p>대표 전화번호-->전화번호</p><br>
+          <p>평일 운영시간-->평일</p><br>
+          <p>토요일 운영시간-->토요일</p><br>
+          <p>일요일/공휴일운영시간-->쉬는날</p><br>
+      </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript" src="../NAVBAR.js"></script>
+
+</body>
+</html>
+
+
+
+

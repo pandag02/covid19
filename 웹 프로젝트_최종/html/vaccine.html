@@ -1,0 +1,425 @@
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>백신 접종소</title>
+    <meta charset="utf-8">
+    <meta name="author" content="김영진,이소연">
+    <meta name="description" content="코로나19 관련 정보">
+    <meta name="keywords" content="코로나,코로나19,covid-19,감염병,진료소,선별진료소,임시선별진료소,검사,바이러스,확진자,백신,백신접종,백신접종소,아스트라제네카,화이자">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">        <!--title icon-->
+    <title>백신접송소가 되고싶은 페이지</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"> <!--fontawesome icon-->
+    <link type="text/css" rel="stylesheet" href="../style.css">
+    <!--<link rel="stylesheet" href="./debug.css">--> <!--debuger-->
+    <style>
+
+      .info-title {
+      display: block;
+      color: #000000;
+      text-align: center;
+      height: 55px;
+      width: 380px;
+      line-height:25px;
+      border-radius:5px;
+      padding:0px 5px;
+      }
+      .map_wrap {
+        position:relative;
+        width:100%;
+        height:200px;
+      }
+      .search {
+        position:absolute;
+        left:82%;
+        top:20px;
+        border-radius: 4px;
+        background:#fff;
+        background:rgba(255,255,255,0.8);
+        z-index:1;
+        padding:5px;
+      }
+
+      </style>
+</head>
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->
+<body>
+
+    <!--NAVBAR --> 
+    <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation"> <!--is-white has-shadow is-transparent-->
+      <div class="navbar-brand">
+        <a class="navbar-item" href="../index.html">
+          <img src="../images/logo 64px.png" alt="logo" class="px-4">
+        </a>
+      </div>
+
+      
+      
+      <div class="navbar-menu is-centered">
+        <div class="navbar-start" id="golf">
+          <a href="infection.html" class="navbar-item" id="hotel">
+            <span style="color: #ff506e;">
+              <i class="fas fa-procedures fa-pull-left"></i>
+            </span>    
+              확진자현황
+          </a>
+          <a href="./exam.html" class="navbar-item" id="india">
+            <span style="color: #228b22;">
+              <i class="fas fa-hospital fa-pull-left"></i>
+            </span>
+            선별진료소
+          </a>
+          <a href="./vaccine.html" class="navbar-item" id="juliet">
+          <span style="color: #00cccc;">
+            <i class="fas fa-syringe fa-pull-left"></i>
+          </span>  
+            백신접종소
+          </a>
+          <a href="http://coronafact.org/vaccine" class="navbar-item" id="kilo">
+            <span style="color: #ffa940;">
+              <i class="fas fa-first-aid fa-pull-left"></i>
+            </span>
+            이상반응 신고
+          </a>
+          <a href="https://nct.go.kr/serviceCenter/noticeDetail.do?currentPageNo=1&refnceSeq=493&searchKeyword1=" class="navbar-item" id="lima">
+            <span style="color: #0073ff;">
+              <i class="fas fa-sad-tear fa-pull-left"></i>
+            </span>
+            코로나 블루
+          </a>
+        </div>
+        <div class="navbar-end pr-2">                              
+          <div class="buttons">
+            <button onclick="donation_show();" class="button is-warning is-light">
+              <i class="fas fa-hand-holding-usd">&nbsp;</i>
+              <strong>후원</strong>
+            </button>           
+          </div>
+      </div>
+    </nav>
+    <!--NAVBAR End-->
+    
+    <div class="notification is-warning" id="donation">
+      <button type="button" class="delete" onclick="donation_hide();"></button>
+        <div class="card-content">
+        <img src="../images/qr.jpg" width="200px" height="200px">
+      </div>
+    </div>
+
+
+    <div class="map_wrap">
+      <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+      <div class="search columns">
+        <input class="input" type = 'text' id="where" name= "where" placeholder="주소를 입력하세요"/>
+          <button type="button" class="button is-success" onclick="search();" >검색</button>
+      </div>
+    </div>
+
+
+    <script scr="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a401cf789b19f7fcebb12e56b3c87e28&libraries=services,clusterer"></script>
+    
+
+
+<script>
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+        center : new kakao.maps.LatLng(35.8621953781515, 129.19472584180514), // 지도의 중심좌표 
+        level : 6 // 지도의 확대 레벨 
+    });
+
+
+
+
+
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+if (navigator.geolocation) {
+    
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        
+    // 마커 이미지의 이미지 주소입니다
+    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(lat, lon), // 마커를 표시할 위치
+        title : "현위치", // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+
+    var iwContent = '<div style="padding:5px;">현위치</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition =  new kakao.maps.LatLng(lat, lon), //인포윈도우 표시 위치입니다
+    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+	
+// 인포윈도우를 생성하고 지도에 표시합니다
+var infowindow = new kakao.maps.InfoWindow({
+    map: map, // 인포윈도우가 표시될 지도
+    position : iwPosition, 
+    content : iwContent,
+    removable : iwRemoveable
+});
+
+infowindow.open(map, marker); 
+
+        // 지도 중심좌표를 접속위치로 변경합니다
+        map.setCenter(new kakao.maps.LatLng(lat, lon));  
+            
+      });
+
+
+    
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    
+    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+        message = 'geolocation을 사용할수 없어요..'
+        
+    displayMarker(locPosition, message);
+}
+
+
+
+
+
+
+    
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10, // 클러스터 할 최소 지도 레벨
+        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+    });
+
+    // 데이터를 가져오기 위해 jQuery를 사용합니다
+    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+    $.get("https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=500&serviceKey=WVddByVsYeoGUZcJozVFaGExh28aS1QU%2Fu5KhMIrV7mQCMSbuWxkVN9DuE64tWjm0K7O%2FTMTy6A4rQUQDALIAQ%3D%3D", function(das) {
+        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+        var markers = $(das.data).map(function(i, position) {
+
+            var maks = new kakao.maps.Marker({
+                map: map,
+                position : new kakao.maps.LatLng(position.lat, position.lng)
+            });
+
+            var Name = position.centerName;
+            var Number = position.phoneNumber;
+
+
+            var infowindow = new kakao.maps.InfoWindow({
+                removable : true,
+                content: ('<span class="info-title">' + Name + '</br>번호: ' + Number +'</span>')
+              
+  
+            });   
+
+            kakao.maps.event.addListener(maks, 'click', makeOverListener(map, maks, infowindow));
+
+            return maks;
+
+
+        });
+
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+    });
+
+
+
+    function makeOverListener(map, marks, infowindow) {
+      return function() {
+        infowindow.open(map, marks);
+      };
+    }
+
+
+
+    // 마커 클러스터러에 클릭이벤트를 등록합니다
+    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
+    // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
+    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+
+        // 현재 지도 레벨에서 1레벨 확대한 레벨
+        var level = map.getLevel()-1;
+
+        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+        map.setLevel(level, {anchor: cluster.getCenter()});
+    });
+
+//------------------------------------------------지도 구역-------------------------------------------------------------------------
+
+    function getSelectValue(){
+
+    var selectedValue = document.getElementById("list").value;
+
+
+    const url = 'https://api.odcloud.kr/api/15077756/v1/vaccine-stat?page=1&perPage=3000&serviceKey=WVddByVsYeoGUZcJozVFaGExh28aS1QU%2Fu5KhMIrV7mQCMSbuWxkVN9DuE64tWjm0K7O%2FTMTy6A4rQUQDALIAQ%3D%3D'
+
+    async function zzz() {
+
+        const response = await fetch(url);
+        const datata = await response.json();
+
+        const count = datata.currentCount;
+
+        var update = count - 18;
+
+        function tableEda (how){
+          document.getElementById('sido').textContent = datata.data[update+how].sido;
+          document.getElementById('firstCnt').textContent = datata.data[update+how].firstCnt;
+          document.getElementById('secondCnt').textContent = datata.data[update+how].secondCnt;
+          document.getElementById('totalFirstCnt').textContent = datata.data[update+how].totalFirstCnt;
+          document.getElementById('totalSecondCnt').textContent = datata.data[update+how].totalSecondCnt;
+      };
+
+      var city = ["전국","서울특별시","부산광역시","대구광역시","인천광역시","광주광역시","대전광역시","울산광역시","세종특별자치시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주특별자치도" ];
+
+      for(var p =0; p<18; p++){
+
+          var HOME = city[p];
+
+          if(selectedValue == HOME){
+
+            for(var i = 0; i<18; i++){
+
+              var SIDO = datata.data[update+i].sido;
+              
+              if(SIDO == HOME){
+                tableEda(i);
+              }
+            }
+
+          }
+      }
+        
+
+      
+    }
+
+
+    zzz();
+
+} 
+/*--------------------------------------------------------전국 선택지------------------------------------------------------------------*/
+var geocoder = new kakao.maps.services.Geocoder();
+
+function search(){
+  var text = document.getElementById('where').value;
+
+  // 주소로 좌표를 검색합니다
+geocoder.addressSearch(text, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+    else{
+      alert("주소를 더 자세히 입력해주세요");
+    }
+});    
+  
+}
+/*--------------------------------------------------------검색------------------------------------------------------------------*/
+</script>
+
+<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+
+<div class="columns">
+  <div class="column is-one-quarter">
+      <div class="field">
+      <p class="control has-icons-left">
+          <span class="select">
+          <select id = "list" onchange = "getSelectValue()";>
+              <option selected value = "시작">지역을 선택해주세요</option>
+              <option value = "전국">전국</option>
+              <option value = "경기도">경기도</option>
+              <option value = "충청북도">충청북도</option>
+              <option value = "충청남도">충청남도</option>
+              <option value = "전라북도">전라북도</option>
+              <option value = "전라남도">전라남도</option>
+              <option value = "경상북도">경상북도</option>
+              <option value = "경상남도">경상남도</option>
+              <option value = "제주특별자치도">제주특별자치도</option> 
+              <option value = "서울특별시">서울특별시</option>
+              <option value = "부산광역시">부산광역시</option>
+              <option value = "대구광역시">대구광역시</option>
+              <option value = "인천광역시">인천광역시</option>
+              <option value = "광주광역시">광주광역시</option>
+              <option value = "대전광역시">대전광역시</option>
+              <option value = "울산광역시">울산광역시</option>
+              <option value = "세종특별자치시">세종특별자치시</option>
+          </select>
+          </span>
+          <span class="icon is-small is-left">
+          <i class="fas fa-globe"></i>
+          </span>
+      </p>
+      </div>
+      </div>
+
+
+      <br />
+      <br />
+      <!--TABLE-->
+      <div class="table-container px-6">
+      <table class="table is-bordered is-striped">
+          <thead>
+          <tr>
+              <th>지역명칭</th>
+              <th>당일 통계(1차 접종)</th>
+              <th>당일 통계(2차 접종)</th>
+              <th>전체 누적 통계(1차 접종)</th>
+              <th>전체 누적 통계(2차 접종)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td id = "sido"></td>
+              <td id = "firstCnt"></td>
+              <td id = "secondCnt"></td>
+              <td id = "totalFirstCnt"></td>
+              <td id = "totalSecondCnt"></td>
+          </tr>
+
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<script type="text/javascript" src="../NAVBAR.js"></script><br /><br /><br /><br /><br /><br />
+<!--footer-->
+<footer class="footer py-3">
+  <div class="content has-text-centered">
+    <p class="is-family-monospace">
+      Copyright 2021 코비드인포(CovidInfo).All rights reserved.<br />
+      개발자 : 김영진, 이소연 | Contact : coronainfo.kr@gmail.com
+    </p>
+  </div>
+</footer>
+</body>
+</html>
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지-->

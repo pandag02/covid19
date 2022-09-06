@@ -1,0 +1,831 @@
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="김영진,이소연">
+    <meta name="description" content="코로나19 관련 정보">
+    <meta name="keywords" content="유행병,코로나,코로나19,covid-19,감염병,진료소,선별진료소,임시선별진료소,검사,바이러스,확진자,백신,백신접종,백신접종소,아스트라제네카,화이자">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">           <!--title icon-->
+    <title>확진자 현황</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"> <!--Bulma CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"> <!--fontawesome CDN-->
+    <link type="text/css" rel="stylesheet" href="../style.css">
+    <!--<link rel="stylesheet" href="./debug.css">--> <!--debuger-->
+  </head>
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+  <body style="background-color: #ededed;">
+    <!--NAVBAR --> 
+    <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation"> <!--is-white has-shadow is-transparent-->
+      <div class="navbar-brand">
+        <a class="navbar-item" href="../index.html">
+          <img src="../images/logo 64px.png" alt="logo" class="px-4">
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" id="golf">
+          <a href="./infection.html" class="navbar-item" id="hotel">
+            <span style="color: #ff506e;">
+              <i class="fas fa-procedures fa-pull-left"></i>
+            </span>    
+            확진자현황
+          </a>
+          <a href="./exam.html" class="navbar-item" id="india">
+            <span style="color: #228b22;">
+              <i class="fas fa-hospital fa-pull-left"></i>
+            </span>
+            선별진료소
+          </a>
+          <a href="./vaccine.html" class="navbar-item" id="juliet">
+          <span style="color: #00cccc;">
+            <i class="fas fa-syringe fa-pull-left"></i>
+          </span>  
+            백신접종소
+          </a>
+          <a href="http://coronafact.org/vaccine" class="navbar-item" id="kilo">
+            <span style="color: #ffa940;">
+              <i class="fas fa-first-aid fa-pull-left"></i>
+            </span>
+            이상반응 신고
+          </a>
+          <a href="https://nct.go.kr/serviceCenter/noticeDetail.do?currentPageNo=1&refnceSeq=493&searchKeyword1=" class="navbar-item" id="lima">
+            <span style="color: #0073ff;">
+              <i class="fas fa-sad-tear fa-pull-left"></i>
+            </span>
+            코로나 블루
+          </a>
+        </div>
+        <div class="navbar-end pr-2">                              
+          <div class="buttons">
+            <button onclick="donation_show();" class="button is-warning is-light">
+              <i class="fas fa-hand-holding-usd">&nbsp;</i>
+              <strong>후원</strong>
+            </button>           
+          </div>
+      </div>  
+    </nav>
+    <div class="notification is-warning" id="donation">
+      <button type="button" class="delete" onclick="donation_hide();"></button>
+        <div class="card-content">
+        <img src="../images/qr.jpg" width="200px" height="200px">
+      </div>
+    </div>
+    <!--NAVBAR End --> 
+
+
+
+<!--Total Cnt-->
+    <div class="container py-6">
+      <div class="box">
+        <div class="columns">
+          
+          <div class="column is-3 has-text-centered">
+            <span style="color: #000000; font-size: 25px;"><i class="fas fa-skull-crossbones"></i></span><br />
+            <span class="has-text-weight-semibold">누적 사망자</span><br/>
+            <span id="TotalDeath"></span><span>명</span>
+          </div>
+
+          <div class="column is-3 has-text-centered">
+            <span style="color: #dc143c; font-size: 25px;"><i class="fas fa-biohazard"></i></span><br />
+            <span class="has-text-weight-semibold">누적확진자</span><br />
+              <span id="TotalCase"></span><span>명</span>
+          </div>
+
+          <div class="column is-3 has-text-centered">
+            <span style="color: #ff4500; font-size: 25px;"><i class="fas fa-chart-line"></i></span><br />
+            <span class="has-text-weight-semibold">전일대비 환진자수</span><br />
+            <span id="data.korea.newCase"></span><span>명</span>
+            <span>
+              
+            </span>
+          </div>
+          <div class="column is-3 has-text-centered">
+            <span style="color:#8b14f9; font-size: 25px;"><i class="fas fa-diagnoses"></i></span><br /><!--#191970-->
+            <span class="has-text-weight-semibold">검사결과 양성률</span><br />
+            <span id="casePercentage"></span><span>%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--Total Cnt End-->
+
+<!--Local Cnt-->
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Seoul_logo.svg" alt="seoul_logo" style="width: 24px; height: 24px;"  title="출처:서울시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">서울특별시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.seoul.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.seoul.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.seoul.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Busan_logo.svg" alt="Busan_logo" style="width: 24px; height: 24px;" title="출처:부산광역시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">부산광역시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.busan.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.busan.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.busan.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+        <figure class="media-left"> <!--icon or logo-->
+          <img src="../images/Daegu_logo.svg" alt="Daegu_logo" style="width: 24px; height: 24px;" title="출처:대구광역시 홈페이지"/>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+              <h1 class="title is-size-4">대구광역시</h1> <!--title-->
+              <p class="subtitle is-size-6"><br />
+                <span style="color: #dc143c; font-size: 15px;">
+                  <i class="fas fa-biohazard"></i>
+                </span>
+                <span class="has-text-weight-semibold">신규확진자 : </span>
+                <span id="data.daegu.newCase"></span><span>명</span><br />
+
+                <span style="color: #000000; font-size: 15px;">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                <span class="has-text-weight-semibold">누적사망자 : </span>
+                <span id="data.daegu.death"></span><span>명</span><br />
+
+                <span style="color: #00bfff; font-size: 15px;">
+                  <i class="fas fa-percentage"></i>
+                </span>
+                <span class="has-text-weight-semibold">발생률 : </span>
+                <span id="data.daegu.percentage"></span><span>%</span>
+              </p>
+          </div>
+        </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/ICN_LOGO.svg" alt="ICN_logo" style="width: 24px; height: 24px;" title="츨처:인천광역시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">인천광역시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.incheon.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.incheon.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.incheon.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Gwangju_logo.svg" alt="Gwangju_logo" style="width: 24px; height: 24px;"title="츨처:광주광역시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">광주광역시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.gwangju.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.gwangju.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.gwangju.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+        <figure class="media-left"> <!--icon or logo-->
+          <img src="../images/Daejeon_logo.svg" alt="Daejeon_logo" style="width: 24px; height: 24px;" title="출처:대전광역시 홈페이지"/>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+              <h1 class="title is-size-4">대전광역시</h1> <!--title-->
+              <p class="subtitle is-size-6"><br />
+                <span style="color: #dc143c; font-size: 15px;">
+                  <i class="fas fa-biohazard"></i>
+                </span>
+                <span class="has-text-weight-semibold">신규확진자 : </span>
+                <span id="data.daejeon.newCase"></span><span>명</span><br />
+
+                <span style="color: #000000; font-size: 15px;">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                <span class="has-text-weight-semibold">누적사망자 : </span>
+                <span id="data.daejeon.death"></span><span>명</span><br />
+
+                <span style="color: #00bfff; font-size: 15px;">
+                  <i class="fas fa-percentage"></i>
+                </span>
+                <span class="has-text-weight-semibold">발생률 : </span>
+                <span id="data.daejeon.percentage"></span><span>%</span>
+              </p>
+          </div>
+        </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Ulsan_logo.svg" alt="Ulsan_logo" style="width: 24px; height: 24px;" title="출처:울산광역시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">울산광역시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.ulsan.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.ulsan.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.ulsan.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Gyeonggi_logo.svg" alt="Gyeonggi_logo" style="width: 24px; height: 24px;" title="출처:경기도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">경기도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.gyeonggi.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.gyeonggi.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.gyeonggi.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+        <figure class="media-left"> <!--icon or logo-->
+          <img src="../images/Gangwon_logo.svg" alt="Gangwon_logo" style="width: 24px; height: 24px;" title="출처:강원도 홈페이지"/>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+              <h1 class="title is-size-4">강원도</h1> <!--title-->
+              <p class="subtitle is-size-6"><br />
+                <span style="color: #dc143c; font-size: 15px;">
+                  <i class="fas fa-biohazard"></i>
+                </span>
+                <span class="has-text-weight-semibold">신규확진자 : </span>
+                <span id="data.gangwon.newCase"></span><span>명</span><br />
+
+                <span style="color: #000000; font-size: 15px;">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                <span class="has-text-weight-semibold">누적사망자 : </span>
+                <span id="data.gangwon.death"></span><span>명</span><br />
+
+                <span style="color: #00bfff; font-size: 15px;">
+                  <i class="fas fa-percentage"></i>
+                </span>
+                <span class="has-text-weight-semibold">발생률 : </span>
+                <span id="data.gangwon.percentage"></span><span>%</span>
+              </p>
+          </div>
+        </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Chungcheong_logo.svg" alt="Chungcheong_logo" style="width: 24px; height: 24px;" title="출처:출청북도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">충청북도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.chungbuk.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.chungbuk.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.chungbuk.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Chungcheongnam-do_logo.svg" alt="Chungcheongnam-do_logo" style="width: 24px; height: 24px;" title="출처:충청남도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">충청남도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.chungnam.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.chungnam.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.chungnam.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+        <figure class="media-left"> <!--icon or logo-->
+          <img src="../images/Jeollabuk-do_logo.svg" alt="Jeollabuk-do_logo" style="width: 24px; height: 24px;" title="출처:전라북도 홈페이지"/>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+              <h1 class="title is-size-4">전라북도</h1> <!--title-->
+              <p class="subtitle is-size-6"><br />
+                <span style="color: #dc143c; font-size: 15px;">
+                  <i class="fas fa-biohazard"></i>
+                </span>
+                <span class="has-text-weight-semibold">신규확진자 : </span>
+                <span id="data.jeonbuk.newCase"></span><span>명</span><br />
+
+                <span style="color: #000000; font-size: 15px;">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                <span class="has-text-weight-semibold">누적사망자 : </span>
+                <span id="data.jeonbuk.death"></span><span>명</span><br />
+
+                <span style="color: #00bfff; font-size: 15px;">
+                  <i class="fas fa-percentage"></i>
+                </span>
+                <span class="has-text-weight-semibold">발생률 : </span>
+                <span id="data.jeonbuk.percentage"></span><span>%</span>
+              </p>
+          </div>
+        </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Jeollanam-do_logo.svg" alt=Jeollanam-do_logo" style="width: 24px; height: 24px;" title="출처:전라남도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">전라남도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.jeonnam.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.jeonnam.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.jeonnam.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Gyeongsangbuk-do_logo.svg" alt="Gyeongsangbuk-do_logo" style="width: 24px; height: 24px;" title="출처:경상북도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">경상북도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.gyeongbuk.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.gyeongbuk.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.gyeongbuk.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+        <figure class="media-left"> <!--icon or logo-->
+          <img src="../images/Gyeongsangnam-do_logo.svg" alt="Gyeongsangnam-do_logo" style="width: 24px; height: 24px;" title="출처:경상남도 홈페이지"/>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+              <h1 class="title is-size-4">경상남도</h1> <!--title-->
+              <p class="subtitle is-size-6"><br />
+                <span style="color: #dc143c; font-size: 15px;">
+                  <i class="fas fa-biohazard"></i>
+                </span>
+                <span class="has-text-weight-semibold">신규확진자 : </span>
+                <span id="data.gyeongnam.newCase"></span><span>명</span><br />
+
+                <span style="color: #000000; font-size: 15px;">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                <span class="has-text-weight-semibold">누적사망자 : </span>
+                <span id="data.gyeongnam.death"></span><span>명</span><br />
+
+                <span style="color: #00bfff; font-size: 15px;">
+                  <i class="fas fa-percentage"></i>
+                </span>
+                <span class="has-text-weight-semibold">발생률 : </span>
+                <span id="data.gyeongnam.percentage"></span><span>%</span>
+              </p>
+          </div>
+        </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Jeju_logo.svg" alt="Jeju_logo" style="width: 24px; height: 24px;" title="출처:제주특별자치도 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">제주특별자치도</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.jeju.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.jeju.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.jeju.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    <div class="column is-one-third">
+        <article class="media notification has-background-white"> 
+            <figure class="media-left"> <!--icon or image-->
+              <img src="../images/Sejong_logo.svg" alt="Sejong_logo" style="width: 24px; height: 24px;" title="출처:세종특별자치시 홈페이지"/>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                  <h1 class="title is-size-4">세종특별자치시</h1> <!--title-->
+                  <p class="subtitle is-size-6"><br />
+                    <span style="color: #dc143c; font-size: 15px;">
+                      <i class="fas fa-biohazard"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">신규확진자 : </span>
+                    <span id="data.sejong.newCase"></span><span>명</span><br />
+
+                    <span style="color: #000000; font-size: 15px;">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">누적사망자 : </span>
+                    <span id="data.sejong.death"></span><span>명</span><br />
+
+                    <span style="color: #00bfff; font-size: 15px;">
+                      <i class="fas fa-percentage"></i>
+                    </span>
+                    <span class="has-text-weight-semibold">발생률 : </span>
+                    <span id="data.sejong.percentage"></span><span>%</span>
+                  </p>
+              </div>
+            </div>     
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Local Cnt End-->
+
+<!--Chart-->
+    <div>
+      <canvas id="myChart" width="300" height="100"></canvas>
+    </div>  
+<!--Chart End-->
+    <div class="is-align-content-center" style="text-align: center;">업데이트 일시:<span id="updateTime"></span></div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--Chart.js CDN link-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  <!--API 1-->
+  <script>
+    const url = 'https://api.corona-19.kr/korea/?serviceKey=sSoeKCz3BwWGtnRHYgcuAOdkIMf6F4rxZ';
+
+    async function getdata1() {
+    const response = await fetch(url);
+    const data = await response.json();
+    const { TotalCase, TotalDeath, TotalCaseBefore, casePercentage, updateTime, } = data;
+
+
+    document.getElementById('TotalCase').textContent = TotalCase;
+    document.getElementById('TotalDeath').innerText = TotalDeath;
+    document.getElementById('casePercentage').innerText = casePercentage;
+    document.getElementById('updateTime').textContent = updateTime;
+    }
+
+getdata1();
+
+</script>
+<!--API 1 End-->
+
+<!--API 2-->
+<script>
+  const url2 = 'http://api.corona-19.kr/korea/country/new/?serviceKey=sSoeKCz3BwWGtnRHYgcuAOdkIMf6F4rxZ';
+
+  async function getdata2() {
+  const response = await fetch(url2);
+  const data = await response.json();
+  
+  document.getElementById('data.korea.newCase').textContent = data.korea.newCase; //KOREA
+
+  document.getElementById('data.seoul.newCase').textContent = data.seoul.newCase; //SEOUL
+  document.getElementById('data.seoul.death').textContent = data.seoul.death;
+  document.getElementById('data.seoul.percentage').textContent = data.seoul.percentage;
+
+  document.getElementById('data.busan.newCase').textContent = data.busan.newCase; //BUSAN
+  document.getElementById('data.busan.death').textContent = data.busan.death;
+  document.getElementById('data.busan.percentage').textContent = data.busan.percentage;
+
+  document.getElementById('data.daegu.newCase').textContent = data.daegu.newCase; //DAEGU
+  document.getElementById('data.daegu.death').textContent = data.daegu.death;
+  document.getElementById('data.daegu.percentage').textContent = data.daegu.percentage;
+
+  document.getElementById('data.busan.newCase').textContent = data.busan.newCase; //BUSAN
+  document.getElementById('data.busan.death').textContent = data.busan.death;
+  document.getElementById('data.busan.percentage').textContent = data.busan.percentage;
+  
+  document.getElementById('data.incheon.newCase').textContent = data.incheon.newCase; //ICN
+  document.getElementById('data.incheon.death').textContent = data.incheon.death;
+  document.getElementById('data.incheon.percentage').textContent = data.incheon.percentage;
+  
+  document.getElementById('data.gwangju.newCase').textContent = data.gwangju.newCase; //GWANGJU
+  document.getElementById('data.gwangju.death').textContent = data.gwangju.death;
+  document.getElementById('data.gwangju.percentage').textContent = data.gwangju.percentage;
+
+  document.getElementById('data.daejeon.newCase').textContent = data.daejeon.newCase; //DAEJEON
+  document.getElementById('data.daejeon.death').textContent = data.daejeon.death;
+  document.getElementById('data.daejeon.percentage').textContent = data.daejeon.percentage;
+
+  document.getElementById('data.ulsan.newCase').textContent = data.ulsan.newCase; //ULSAN
+  document.getElementById('data.ulsan.death').textContent = data.ulsan.death;
+  document.getElementById('data.ulsan.percentage').textContent = data.ulsan.percentage;
+
+  document.getElementById('data.gyeonggi.newCase').textContent = data.gyeonggi.newCase; //gyeonggi
+  document.getElementById('data.gyeonggi.death').textContent = data.gyeonggi.death;
+  document.getElementById('data.gyeonggi.percentage').textContent = data.gyeonggi.percentage;
+
+  document.getElementById('data.gangwon.newCase').textContent = data.gangwon.newCase; //GANGWON
+  document.getElementById('data.gangwon.death').textContent = data.gangwon.death;
+  document.getElementById('data.gangwon.percentage').textContent = data.gangwon.percentage;
+
+  document.getElementById('data.chungbuk.newCase').textContent = data.chungbuk.newCase; //CHUNGBUK
+  document.getElementById('data.chungbuk.death').textContent = data.chungbuk.death;
+  document.getElementById('data.chungbuk.percentage').textContent = data.chungbuk.percentage;
+
+  document.getElementById('data.chungnam.newCase').textContent = data.chungnam.newCase; //CHUNGNAM
+  document.getElementById('data.chungnam.death').textContent = data.chungnam.death;
+  document.getElementById('data.chungnam.percentage').textContent = data.chungnam.percentage;
+
+  document.getElementById('data.jeonbuk.newCase').textContent = data.jeonbuk.newCase; //JEONBUK
+  document.getElementById('data.jeonbuk.death').textContent = data.jeonbuk.death;
+  document.getElementById('data.jeonbuk.percentage').textContent = data.jeonbuk.percentage;
+
+  document.getElementById('data.jeonnam.newCase').textContent = data.jeonnam.newCase; //JEONNAM
+  document.getElementById('data.jeonnam.death').textContent = data.jeonnam.death;
+  document.getElementById('data.jeonnam.percentage').textContent = data.jeonnam.percentage;
+
+  document.getElementById('data.gyeongbuk.newCase').textContent = data.gyeongbuk.newCase; //GYEONBUK
+  document.getElementById('data.gyeongbuk.death').textContent = data.gyeongbuk.death;
+  document.getElementById('data.gyeongbuk.percentage').textContent = data.gyeongbuk.percentage;
+
+  document.getElementById('data.gyeongnam.newCase').textContent = data.gyeongnam.newCase; //GYEONGNAM
+  document.getElementById('data.gyeongnam.death').textContent = data.gyeongnam.death;
+  document.getElementById('data.gyeongnam.percentage').textContent = data.gyeongnam.percentage;
+
+  document.getElementById('data.jeju.newCase').textContent = data.jeju.newCase; //JEJU
+  document.getElementById('data.jeju.death').textContent = data.jeju.death;
+  document.getElementById('data.jeju.percentage').textContent = data.jeju.percentage;
+
+  document.getElementById('data.sejong.newCase').textContent = data.sejong.newCase; //SEJONG
+  document.getElementById('data.sejong.death').textContent = data.sejong.death;
+  document.getElementById('data.sejong.percentage').textContent = data.sejong.percentage;
+
+  }
+  getdata2();
+</script>
+<!--API 2 End-->
+<script type="text/javascript" src="../NAVBAR.js"></script>  
+<!--footer-->
+    <footer class="footer py-3">
+      <div class="content has-text-centered">
+        <p class="is-family-monospace">
+          Copyright 2021 코비드인포(CovidInfo).All rights reserved.<br />
+          개발자 : 김영진, 이소연 | Contact : coronainfo.kr@gmail.com
+        </p>
+      </div>
+    </footer>
+</html>
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
+<!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지--><!--소스코드 무단 도용 금지-->
