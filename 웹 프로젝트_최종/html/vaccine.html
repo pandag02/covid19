@@ -1,6 +1,4 @@
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +44,7 @@
 
       </style>
 </head>
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
+
 <body>
 
     <!--NAVBAR --> 
@@ -124,7 +120,7 @@
 
     <script scr="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a401cf789b19f7fcebb12e56b3c87e28&libraries=services,clusterer"></script>
+    <script type="text/javascript" src=""></script>
     
 
 
@@ -208,7 +204,7 @@ infowindow.open(map, marker);
 
     // 데이터를 가져오기 위해 jQuery를 사용합니다
     // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-    $.get("https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=500&serviceKey=WVddByVsYeoGUZcJozVFaGExh28aS1QU%2Fu5KhMIrV7mQCMSbuWxkVN9DuE64tWjm0K7O%2FTMTy6A4rQUQDALIAQ%3D%3D", function(das) {
+    $.get("", function(das) {
         // 데이터에서 좌표 값을 가지고 마커를 표시합니다
         // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
         var markers = $(das.data).map(function(i, position) {
@@ -269,7 +265,7 @@ infowindow.open(map, marker);
     var selectedValue = document.getElementById("list").value;
 
 
-    const url = 'https://api.odcloud.kr/api/15077756/v1/vaccine-stat?page=1&perPage=3000&serviceKey=WVddByVsYeoGUZcJozVFaGExh28aS1QU%2Fu5KhMIrV7mQCMSbuWxkVN9DuE64tWjm0K7O%2FTMTy6A4rQUQDALIAQ%3D%3D'
+    const url = ''
 
     async function zzz() {
 
@@ -420,6 +416,3 @@ geocoder.addressSearch(text, function(result, status) {
 </footer>
 </body>
 </html>
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
-<!--소스코드 무단 도용 금지-->
